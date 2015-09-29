@@ -23,7 +23,8 @@ def dtapicall(appliance, query, publickey, privatekey, timemod=0, verifySSL=Fals
 	import hashlib
 	import requests
 
-	today = datetime.datetime.today()
+	#today = datetime.datetime.today()
+	today = datetime.datetime.utcnow() 
 	today = today + datetime.timedelta(minutes=timemod)
 	format = "%Y%m%dT%H%M%S"
 	dt = today.strftime(format)
