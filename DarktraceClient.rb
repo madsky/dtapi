@@ -1,6 +1,16 @@
 require 'net/http'
 require 'openssl'
 
+# Darktrace module
+# Provides a wrapper around the Darktrace API enabling easy access to its resources.
+# So far, only supports GET requests to said resources. Expand the @resources array 
+# to enable resource endpoints.
+# 
+# Basic usage:
+# client = Darktrace::Client.new
+# puts client.time.get # returns a Net::HTTPResponse
+# puts client.time.get.body # outputs the response body
+# puts client.time.get.code # outputs the response http status code
 module Darktrace
     class Client
     
