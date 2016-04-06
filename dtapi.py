@@ -30,13 +30,11 @@ def dtapicall(appliance, query, publickey, privatekey, timemod=0, verifySSL=Fals
 	dt = today.strftime(format)
 
 	hmac = hmac.new(privatekey, query+"\n"+publickey+"\n"+dt, hashlib.sha1)
-	sig = hashlib.sha1()
-	sig.update(hmac.digest())
 
 	payload = {
 		'DTAPI-Token': publickey,
 		'DTAPI-Date': dt,
-		'DTAPI-Signature': sig.hexdigest()
+		'DTAPI-Signature': hmac.hexdigest()
 	}
 
 	r = requests.get(appliance+query, headers=payload, verify=verifySSL)
